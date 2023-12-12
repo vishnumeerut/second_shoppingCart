@@ -11,7 +11,7 @@ function CategoryItem ({itemName}) {
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-gray-900 to-transparent"></div>
                 <div className="absolute bottom-4 left-4 text-left">
-                    <p className="mt-2 text-lg font-bold text-gray-300">
+                    <p className="mt-2 text-lg text-center font-bold text-gray-300">
                     {itemName}
                     </p>
                     
