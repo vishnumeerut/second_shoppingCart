@@ -1,4 +1,7 @@
 function Header () {
+
+
+    
     return (
         <div className="relative w-full bg-gray-300">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
@@ -25,7 +28,7 @@ function Header () {
                     <li>
                     <a
                         href="#"
-                        className="inline-flex items-center text-xl  font-semibold  hover:text-gray-700"
+                        className="inline-flex items-center text-lg  font-semibold  hover:text-gray-700"
                     >
                         UserName
                         
@@ -34,7 +37,7 @@ function Header () {
                     <li>
                     <a
                         href="#"
-                        className="inline-flex items-center text-xl  font-semibold hover:text-gray-700"
+                        className="inline-flex items-center text-lg  font-semibold hover:text-gray-700"
                     >
                         Cart{"  " + 0}
                         
