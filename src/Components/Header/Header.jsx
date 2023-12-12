@@ -1,14 +1,18 @@
+import { Link } from "react-router-dom";
+
 function Header () {
 
 
-    
+
     return (
         <div className="relative w-full bg-gray-300">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
                 <div className="inline-flex items-center space-x-2">
                 
+                <Link to={"/"}>
+                 <span className="font-semibold text-2xl mx-10">ShopCart</span>
 
-                <span className="font-semibold text-2xl mx-10">ShopCart</span>
+                </Link>
                 <div className="flex grow justify-end">
                     <input
                         className="flex h-10 w-[250px] rounded-md bg-gray-100 px-3 py-2 text-sm placeholder:text-gray-600 focus:outline-none focus:ring-1 focus:ring-black/30 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
