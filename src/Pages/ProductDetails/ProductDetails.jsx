@@ -1,19 +1,39 @@
+import axios from "axios";
+import { useParams, useSearchParams } from "react-router-dom";
+import axiosinstance from "../../Config/AxiosInstance";
+import { useEffect, useState } from "react";
+import { getSingleProductById } from "../../Apis/FakeStoreProdApis";
+
 function ProductDetails () {
+
+    const {id} = useParams()
+    const [singleProduct, setSingleProduct] = useState([])
+
+    async function downloadSingleProduct (id) {
+        const response = await axiosinstance.get(getSingleProductById(id))
+        setSingleProduct(response.data)
+    }
+
+    useEffect(() => {
+        downloadSingleProduct(id)
+    }, [])
+
     return (
         <>
             <section class="overflow-hidden">
+                <h1 className="text-center mt-10 text-4xl text-gray-600">This is {singleProduct.category} Product.</h1>
                 <div class="mx-auto max-w-5xl px-5 py-24">
                 <div class="mx-auto flex flex-wrap items-center lg:w-4/5">
                     <img
-                    alt="Nike Air Max 21A"
+                    alt={singleProduct.title}
                     class="h-64 w-full rounded object-cover lg:h-96 lg:w-1/2"
-                    src="https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?ixlib=rb-4.0.3&amp;ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8c2hvZXN8ZW58MHx8MHx8&amp;auto=format&amp;fit=crop&amp;w=800&amp;q=60"
+                    src={singleProduct.image}
                     />
                     <div class="mt-6 w-full lg:mt-0 lg:w-1/2 lg:pl-10">
                     {/* <h2 class="text-sm font-semibold tracking-widest text-gray-500">
                         Nike
                     </h2> */}
-                    <h1 class="my-4 text-3xl font-semibold text-black">Nike Air Max 21A</h1>
+                    <h1 class="my-4 text-3xl font-semibold text-black">{singleProduct.title}</h1>
                     <div class="my-4 flex items-center">
                         <span class="flex items-center space-x-1">
                         <svg
@@ -92,8 +112,7 @@ function ProductDetails () {
                         </span>
                     </div>
                     <p class="leading-relaxed">
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Tenetur rem
-                        amet repudiandae neque adipisci eum enim, natus illo inventore totam?
+                    {singleProduct.description}
                     </p>
                     {/* <div class="mb-5 mt-6 flex items-center border-b-2 border-gray-100 pb-5">
                         <div class="flex items-center">
@@ -131,11 +150,11 @@ function ProductDetails () {
                     </div> */}
                     <div class="flex items-center justify-between">
                         <span class="title-font text-xl font-bold text-gray-900">
-                        ₹47,199
+                        ${singleProduct.price}
                         </span>
                         <button
                         type="button"
-                        class="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
+                        class="rounded-md bg-black px-3 py-2 mt-4 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                         >
                         Add to Cart
                         </button>

@@ -10,3 +10,7 @@ export function getAllProducts () {
 export function getAllProductById (category) {
     return `products/category/${category}`
 }
+
+export function getSingleProductById(id) {
+    return `products/${id}`
+}

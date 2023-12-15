@@ -22,7 +22,7 @@ function ProductList () {
             <div className="flex gap-5 justify-center mt-10 mb-10 flex-wrap">
 
                 {/* <ProductBox name={"nike jordan Air"} price={"45$"}/> */}
-                {allProducts && allProducts.map((product) => <ProductBox key={product.id} name={product.title} price={product.price} productImage={product.image}/>)}
+                {allProducts && allProducts.map((product) => <ProductBox key={product.id} productId={product.id} name={product.title} price={product.price} productImage={product.image}/>)}
                 
             </div>
         </>

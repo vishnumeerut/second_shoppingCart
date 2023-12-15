@@ -1,8 +1,8 @@
 import { Link } from "react-router-dom";
 
-function ProductBox ({price, name, productImage}) {
+function ProductBox ({price, name, productImage, productId}) {
     return (
-            <Link to={"/products/2"}>
+            <Link to={`/products/${productId}`}>
                 <div class="relative aspect-[16/9] mb-10  w-auto rounded-md md:aspect-auto md:h-[400px]">
                     <img
                         src={productImage}
