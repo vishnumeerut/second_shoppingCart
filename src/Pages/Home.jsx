@@ -1,22 +1,10 @@
-import { useEffect, useState } from "react";
 import CategoryItem from "../Components/CategoryItem/CategoryItem";
-import axios from "axios";
-import axiosinstance from "../Config/AxiosInstance";
-import { getAllCategories } from "../Apis/FakeStoreProdApis";
-import { useSearchParams } from "react-router-dom";
+import useCategory from "../Hooks/useCategory";
 
 function Home () {
-    const [categories, setCategory] = useState(null)
 
-    async function downloadAllCategory () {
-        
-        const response = await axiosinstance.get(getAllCategories())
-        setCategory(response.data)
-    }
+    const [categories] = useCategory()
 
-    useEffect(() => {
-        downloadAllCategory()
-    }, [])
     return (
         <>
             <div className="flex justify-center mt-10">
