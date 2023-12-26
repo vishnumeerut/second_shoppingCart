@@ -14,3 +14,7 @@ export function getAllProductById (category) {
 export function getSingleProductById(id) {
     return `products/${id}`
 }
+
+export function signup (){
+    return 'users/'
+}

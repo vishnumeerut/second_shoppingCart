@@ -120,7 +120,7 @@ function Login () {
                         </Link>
                     </p>
                     <form action="#" method="POST" class="mt-8">
-                        <Auth />
+                        <Auth  />
                     </form>
                     
                     </div>
