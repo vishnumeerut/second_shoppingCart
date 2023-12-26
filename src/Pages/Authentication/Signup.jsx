@@ -6,6 +6,20 @@ import toast from "react-hot-toast";
 
 function Signup () {
     const navigator = useNavigate()
+    async function onAuthFormSubmit(authArguments){
+        try{
+            await axiosinstance.post(signup(), {
+                username: authArguments.username,
+                email: authArguments.email,
+                password: authArguments.password,
+            })
+            navigator("/signin")
+        }
+        catch(error){
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
 
     return (
         <section className="mt-10 mb-5">
@@ -126,20 +140,7 @@ function Signup () {
                 <form action="#" method="POST" class="mt-8">
                     
                     <Auth 
-                        onSubmit={async (authArguments) => {
-                            try{
-                                await axiosinstance.post(signup(), {
-                                    username: authArguments.username,
-                                    email: authArguments.email,
-                                    password: authArguments.password,
-                                })
-                                navigator("/signin")
-                            }
-                            catch(error){
-                                console.log(error)
-                                toast.error(error.message)
-                            }
-                        }}
+                        onSubmit={onAuthFormSubmit}
                         flag={true}
                     />
 
