@@ -2,6 +2,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Auth from "../../Components/Auth/Auth";
 import axiosinstance from "../../Config/AxiosInstance";
 import { signup } from "../../Apis/FakeStoreProdApis";
+import toast from "react-hot-toast";
 
 function Signup () {
     const navigator = useNavigate()
@@ -126,12 +127,18 @@ function Signup () {
                     
                     <Auth 
                         onSubmit={async (authArguments) => {
-                            await axiosinstance.post(signup(), {
-                                username: authArguments.username,
-                                email: authArguments.email,
-                                password: authArguments.password,
-                            })
-                            navigator("/signin")
+                            try{
+                                await axiosinstance.post(signup(), {
+                                    username: authArguments.username,
+                                    email: authArguments.email,
+                                    password: authArguments.password,
+                                })
+                                navigator("/signin")
+                            }
+                            catch(error){
+                                console.log(error)
+                                toast.error(error.message)
+                            }
                         }}
                         flag={true}
                     />
