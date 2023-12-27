@@ -3,16 +3,20 @@ import Auth from "../../Components/Auth/Auth";
 import axiosinstance from "../../Config/AxiosInstance";
 import { signin } from "../../Apis/FakeStoreProdApis";
 import toast from "react-hot-toast";
+import { useCookies } from "react-cookie";
 
 function Login () {
-    const navigator = useNavigate()
 
+    const navigator = useNavigate()
+    const [token, setToken] = useCookies(["jwt-token"])
     async function onAuthFormSubmit (formdetails) {
         try{
             const response = await axiosinstance.post(signin(), {
                 username: formdetails.username,
                 password: formdetails.password,
             })
+            console.log("token is", response.data.token)
+            setToken("jwt-token", response.data.token)
             navigator("/")
             // console.log("response of login", response)
         }

@@ -1,9 +1,15 @@
+import { useEffect } from "react";
+import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 
 function Header () {
 
+    const [token, setToken, removeToken] = useCookies(["jwt-token"])
 
 
+    useEffect(() => {
+        
+    }, [token])
     return (
         <div className="relative w-full bg-gray-300">
             <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-2 sm:px-6 lg:px-8">
@@ -48,18 +54,22 @@ function Header () {
                     </a>
                     </li>
                 </ul>
-                <button
+            {token["jwt-token"] ?<Link
+                type="button"
+                onClick={() => removeToken("jwt-token")}
+                    
+                className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
+                >
+                Log Out
+            </Link>  : 
+            <Link  to={"/signin"}
                 type="button"
                 className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
             >
                 Log In
-            </button>
-            <Link to={"/signin"}
-                type="button"
-                className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
-                >
-                Log Out
             </Link>
+            }
+            
                 </div>
                 <div className="lg:hidden">
                 <svg
