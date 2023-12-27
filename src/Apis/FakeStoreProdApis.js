@@ -18,3 +18,8 @@ export function getSingleProductById(id) {
 export function signup (){
     return 'users/'
 }
+
+
+export function signin() {
+    return `auth/login`
+}

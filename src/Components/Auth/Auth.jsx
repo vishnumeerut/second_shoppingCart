@@ -6,7 +6,7 @@ function Auth ({onSubmit, flag}) {
     const [formDetails, setFormDetails] = useState({
         username: "", email: "", password: ""
     })
-    // console.log("formdetails is", formDetails)
+    console.log("formdetails is", formDetails)
 
     function handleInputChange (e) {
         const {name,  value} = e.target;

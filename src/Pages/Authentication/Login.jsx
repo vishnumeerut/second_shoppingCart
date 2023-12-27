@@ -1,7 +1,26 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Auth from "../../Components/Auth/Auth";
+import axiosinstance from "../../Config/AxiosInstance";
+import { signin } from "../../Apis/FakeStoreProdApis";
+import toast from "react-hot-toast";
 
 function Login () {
+    const navigator = useNavigate()
+
+    async function onAuthFormSubmit (formdetails) {
+        try{
+            const response = await axiosinstance.post(signin(), {
+                username: formdetails.username,
+                password: formdetails.password,
+            })
+            navigator("/")
+            // console.log("response of login", response)
+        }
+        catch(error) {
+            console.log(error)
+            toast.error(error.message)
+        }
+    }
     return (
         <>
             <section className="mt-10 mb-5">
@@ -120,7 +139,10 @@ function Login () {
                         </Link>
                     </p>
                     <form action="#" method="POST" class="mt-8">
-                        <Auth  />
+                        <Auth 
+                        
+                            onSubmit={onAuthFormSubmit}
+                        />
                     </form>
                     
                     </div>
