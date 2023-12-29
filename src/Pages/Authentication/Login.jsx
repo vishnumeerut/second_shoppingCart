@@ -15,10 +15,8 @@ function Login () {
                 username: formdetails.username,
                 password: formdetails.password,
             })
-            console.log("token is", response.data.token)
-            setToken("jwt-token", response.data.token)
+            setToken("jwt-token", response.data.token, {httpOnly: true})
             navigator("/")
-            // console.log("response of login", response)
         }
         catch(error) {
             console.log(error)
