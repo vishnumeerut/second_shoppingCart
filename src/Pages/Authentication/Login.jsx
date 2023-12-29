@@ -4,12 +4,13 @@ import axiosinstance from "../../Config/AxiosInstance";
 import { signin } from "../../Apis/FakeStoreProdApis";
 import toast from "react-hot-toast";
 import { useCookies } from "react-cookie";
-// import { useJwt } from "react-jwt";
-// import  Jwt  from "jsonwebtoken";
 import {jwtDecode} from 'jwt-decode';
+import { useContext } from "react";
+import UserContext from "../../context/UserContext";
 
 function Login () {
 
+    const {user, setUser} = useContext(UserContext)
     const navigator = useNavigate()
     const [token, setToken] = useCookies(["jwt-token"])
     async function onAuthFormSubmit (formdetails) {
@@ -19,10 +20,7 @@ function Login () {
                 password: formdetails.password,
             })
             const decodedToken = jwtDecode(response.data.token);
-            console.log("decode", decodedToken)
-            // const { decodedToken, isExpired } = useJwt(response.data.token);
-            // const decodeToken = Jwt.verify(response.data.token, 'secret_key')
-            // console.log("decode token is", decodeToken)
+            setUser({username: decodedToken.user, id: decodedToken.id})
             setToken("jwt-token", response.data.token, {httpOnly: true})
             navigator("/")
         }

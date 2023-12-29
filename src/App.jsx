@@ -1,16 +1,21 @@
 
+import { useState } from 'react'
 import './App.css'
 import Header from './Components/Header/Header'
-import Home from './Pages/Home'
 import MainRoutes from './Routes/MainRoutes'
+import UserContext from './context/UserContext'
 
 function App() {
 
+  const [user, setUser] = useState(null)
   return (
     <>
+      <UserContext.Provider value={{user, setUser}}>
+
       <Header />
-      {/* <Home /> */}
       <MainRoutes />
+      </UserContext.Provider>
+
     </>
     
   )

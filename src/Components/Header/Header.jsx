@@ -1,14 +1,14 @@
 import { jwtDecode } from "jwt-decode";
+import { useContext } from "react";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
+import UserContext from "../../context/UserContext";
 
 function Header () {
-    let decodedToken;
+    
     const [token, setToken, removeToken] = useCookies(["jwt-token"])
-    if(token["jwt-token"]){
-        decodedToken = jwtDecode((token["jwt-token"]));
-    }
+    const {user, setUser} = useContext(UserContext)
     
 
     useEffect(() => {
@@ -39,15 +39,17 @@ function Header () {
                 <div className="hidden space-x-2 lg:block">
                 <ul className="ml-12 inline-flex space-x-8">
                   
-                    <li>
+                {user && <li>
                     <a
                         href="#"
                         className="inline-flex items-center text-lg  font-semibold  hover:text-gray-700"
                     >
-                        UserName
+                        {user.username}
                         
                     </a>
                     </li>
+                        
+                    }
                     <li>
                     <a
                         href="#"
@@ -60,7 +62,10 @@ function Header () {
                 </ul>
             {token["jwt-token"] ?<Link
                 type="button"
-                onClick={() => removeToken("jwt-token")}
+                onClick={() => {
+                    setUser(null)
+                    removeToken("jwt-token")
+                }}
                     
                 className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                 >
