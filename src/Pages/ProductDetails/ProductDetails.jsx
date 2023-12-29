@@ -1,19 +1,24 @@
 import axios from "axios";
 import { useParams, useSearchParams } from "react-router-dom";
 import axiosinstance from "../../Config/AxiosInstance";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { getSingleProductById } from "../../Apis/FakeStoreProdApis";
+import CartContext from "../../context/CartContext";
 
 function ProductDetails () {
 
     const {id} = useParams()
     const [singleProduct, setSingleProduct] = useState([])
+    const {cart, setCart} = useContext(CartContext)
 
     async function downloadSingleProduct (id) {
         const response = await axiosinstance.get(getSingleProductById(id))
         setSingleProduct(response.data)
     }
 
+    function onAddingProduct () {
+        setCart({...cart, products: [...cart.products, id]})
+    }
     useEffect(() => {
         downloadSingleProduct(id)
     }, [])
@@ -153,6 +158,7 @@ function ProductDetails () {
                         ${singleProduct.price}
                         </span>
                         <button
+                        onClick={onAddingProduct}
                         type="button"
                         class="rounded-md bg-black px-3 py-2 mt-4 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                         >

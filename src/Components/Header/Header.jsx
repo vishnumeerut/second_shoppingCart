@@ -4,11 +4,13 @@ import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
+import CartContext from "../../context/CartContext";
 
 function Header () {
     
     const [token, setToken, removeToken] = useCookies(["jwt-token"])
     const {user, setUser} = useContext(UserContext)
+    const {cart, setCart} = useContext(CartContext)
     
 
     useEffect(() => {
@@ -55,7 +57,7 @@ function Header () {
                         href="#"
                         className="inline-flex items-center text-lg  font-semibold hover:text-gray-700"
                     >
-                        Cart{"  " + 0}
+                        Cart{"  " + cart.products.length}
                         
                     </a>
                     </li>
