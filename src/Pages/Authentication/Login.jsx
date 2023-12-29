@@ -4,6 +4,9 @@ import axiosinstance from "../../Config/AxiosInstance";
 import { signin } from "../../Apis/FakeStoreProdApis";
 import toast from "react-hot-toast";
 import { useCookies } from "react-cookie";
+// import { useJwt } from "react-jwt";
+// import  Jwt  from "jsonwebtoken";
+import {jwtDecode} from 'jwt-decode';
 
 function Login () {
 
@@ -15,6 +18,11 @@ function Login () {
                 username: formdetails.username,
                 password: formdetails.password,
             })
+            const decodedToken = jwtDecode(response.data.token);
+            console.log("decode", decodedToken)
+            // const { decodedToken, isExpired } = useJwt(response.data.token);
+            // const decodeToken = Jwt.verify(response.data.token, 'secret_key')
+            // console.log("decode token is", decodeToken)
             setToken("jwt-token", response.data.token, {httpOnly: true})
             navigator("/")
         }

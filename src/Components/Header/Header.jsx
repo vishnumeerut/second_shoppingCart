@@ -1,11 +1,15 @@
+import { jwtDecode } from "jwt-decode";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 
 function Header () {
-
+    let decodedToken;
     const [token, setToken, removeToken] = useCookies(["jwt-token"])
-
+    if(token["jwt-token"]){
+        decodedToken = jwtDecode((token["jwt-token"]));
+    }
+    
 
     useEffect(() => {
         
