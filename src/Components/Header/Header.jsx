@@ -5,6 +5,7 @@ import { useCookies } from "react-cookie";
 import { Link } from "react-router-dom";
 import UserContext from "../../context/UserContext";
 import CartContext from "../../context/CartContext";
+import axiosinstance from "../../Config/AxiosInstance";
 
 function Header () {
     
@@ -12,6 +13,11 @@ function Header () {
     const {user, setUser} = useContext(UserContext)
     const {cart, setCart} = useContext(CartContext)
     
+    function logOut() {
+        setUser(null)
+        removeToken("jwt-token", {httpOnly: true})
+        axiosinstance.get("logout", {withCredentials: true})
+    }
 
     useEffect(() => {
         
@@ -65,8 +71,7 @@ function Header () {
             {token["jwt-token"] ?<Link
                 type="button"
                 onClick={() => {
-                    setUser(null)
-                    removeToken("jwt-token")
+                   logOut()
                 }}
                     
                 className="rounded-md bg-green-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"

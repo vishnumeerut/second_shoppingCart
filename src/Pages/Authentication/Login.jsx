@@ -18,7 +18,7 @@ function Login () {
             const response = await axiosinstance.post(signin(), {
                 username: formdetails.username,
                 password: formdetails.password,
-            })
+            }, {withCredentials: true})
             const decodedToken = jwtDecode(response.data.token);
             setUser({username: decodedToken.user, id: decodedToken.id})
             setToken("jwt-token", response.data.token, {httpOnly: true})
