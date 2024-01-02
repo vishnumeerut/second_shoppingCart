@@ -23,3 +23,7 @@ export function signup (){
 export function signin() {
     return `auth/login`
 }
+
+export function getCartByUser (userId) {
+    return `carts/user/${userId}`
+}

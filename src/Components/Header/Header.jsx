@@ -15,12 +15,13 @@ function Header () {
     
     function logOut() {
         setUser(null)
+        setCart(null)
         removeToken("jwt-token", {httpOnly: true})
         axiosinstance.get("logout", {withCredentials: true})
     }
 
     useEffect(() => {
-        
+
     }, [token])
     return (
         <div className="relative w-full bg-gray-300">
@@ -58,15 +59,15 @@ function Header () {
                     </li>
                         
                     }
-                    <li>
-                    <a
-                        href="#"
+                    {user && <li>
+                    <Link to={`cart/${user.id}`}
+                        // href="#"
                         className="inline-flex items-center text-lg  font-semibold hover:text-gray-700"
                     >
-                        Cart{"  " + cart.products.length}
+                        Cart{"  " + cart && cart.products && ` (${cart.products.length})`}
                         
-                    </a>
-                    </li>
+                    </Link>
+                    </li>}
                 </ul>
             {token["jwt-token"] ?<Link
                 type="button"
