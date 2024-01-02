@@ -1,23 +1,31 @@
 import axios from "axios";
-import { useParams, useSearchParams } from "react-router-dom";
+import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import axiosinstance from "../../Config/AxiosInstance";
 import { useContext, useEffect, useState } from "react";
-import { getSingleProductById } from "../../Apis/FakeStoreProdApis";
+import { addProductToCart, getSingleProductById } from "../../Apis/FakeStoreProdApis";
 import CartContext from "../../context/CartContext";
+import UserContext from "../../context/UserContext";
 
 function ProductDetails () {
 
     const {id} = useParams()
     const [singleProduct, setSingleProduct] = useState([])
     const {cart, setCart} = useContext(CartContext)
+    const {user} = useContext(UserContext)
+    const navigator = useNavigate()
 
     async function downloadSingleProduct (id) {
         const response = await axiosinstance.get(getSingleProductById(id))
         setSingleProduct(response.data)
     }
 
-    function onAddingProduct () {
-        setCart({...cart, products: [...cart.products, id]})
+    async function onAddingProduct () {
+        console.log("add Product function called")
+        if(!user) return;
+        const response = await axiosinstance.put(addProductToCart(), {userId: user.id, productId: id})
+        setCart({...response.data})
+        navigator(`/cart/${+user.id}`)
+        // setCart({...cart, products: [...cart.products, id]})
     }
     useEffect(() => {
         downloadSingleProduct(id)

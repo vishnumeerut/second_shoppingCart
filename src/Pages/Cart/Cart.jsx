@@ -25,7 +25,6 @@ function Cart () {
         const productPromise = cart.products.map(product => axiosinstance.get(getSingleProductById(product.productId)))
         const productPromiseResponse = await axios.all(productPromise)
         const downloadedProducts = productPromiseResponse.map((product) => ({...product.data, quantity: productQuantityMapping[product.data.id]}))
-        console.log(downloadedProducts)
         setProducts(downloadedProducts)
 
     }

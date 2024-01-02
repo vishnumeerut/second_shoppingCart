@@ -27,3 +27,7 @@ export function signin() {
 export function getCartByUser (userId) {
     return `carts/user/${userId}`
 }
+
+export function addProductToCart() {
+    return `carts`
+}

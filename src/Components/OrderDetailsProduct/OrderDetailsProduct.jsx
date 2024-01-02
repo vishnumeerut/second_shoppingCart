@@ -42,14 +42,14 @@ function OrderDetailsProduct ({image, name, price, quantity}) {
                 <button type="button" class="h-7 w-7">
                 -
                 </button>
-                <select>
+                {/* <select>
                     {availableQuantity.map(id => <option selected={quantity == id} value={id} key={id}>{id}</option>)}
-                </select>
-                {/* <input
+                </select> */}
+                <input
                 type="text"
                 class="mx-1 h-7 w-9 rounded-md border text-center"
-                value="1"
-                /> */}
+                value={quantity}
+                />
                 <button
                 type="button"
                 class="flex h-7 w-7 items-center justify-center"
