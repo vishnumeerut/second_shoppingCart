@@ -1,5 +1,11 @@
+import { useState } from "react";
+
 function OrderDetailsProduct ({image, name, price, quantity, onRemove}) {
-    const availableQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+
+    let [productQuantity, setProductQuantity] = useState(quantity);
+    if(productQuantity == 0){
+        onRemove()
+    }
     return (
         <div class="">
             <li class="flex py-6 sm:py-6 ">
@@ -28,10 +34,10 @@ function OrderDetailsProduct ({image, name, price, quantity, onRemove}) {
                     </div>
                     <div class="mt-1 flex items-end">
                     <p class="text-xs font-medium text-gray-500 line-through">
-                        ₹{price}
+                        ₹ 100
                     </p>
-                    <p class="text-sm font-medium text-gray-900">  ₹47,199</p>
-                      <p class="text-sm font-medium text-green-500">5% Off</p>
+                    <p class="text-sm font-medium text-gray-900">  $ {price}</p>
+                    {/*   <p class="text-sm font-medium text-green-500"> 5% Off</p> */}
                     </div>
                 </div>
                 </div>
@@ -39,7 +45,10 @@ function OrderDetailsProduct ({image, name, price, quantity, onRemove}) {
             </li>
             <div class="mb-2 flex">
             <div class="min-w-24 flex">
-                <button type="button" class="h-7 w-7">
+                <button type="button" class="h-7 w-7"
+                onClick={() => setProductQuantity(productQuantity = productQuantity - 1)}
+
+                >
                 -
                 </button>
                 {/* <select>
@@ -48,9 +57,10 @@ function OrderDetailsProduct ({image, name, price, quantity, onRemove}) {
                 <input
                 type="text"
                 class="mx-1 h-7 w-9 rounded-md border text-center"
-                value={quantity}
+                value={productQuantity}
                 />
                 <button
+                onClick={() => setProductQuantity(productQuantity = productQuantity + 1)}
                 type="button"
                 class="flex h-7 w-7 items-center justify-center"
                 >

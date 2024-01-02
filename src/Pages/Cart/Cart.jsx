@@ -8,8 +8,6 @@ import UserContext from "../../context/UserContext";
 
 function Cart () {
 
-    // const {userId} = useParams()
-    // const [cart, setCart] = useCart(userId)
     const [products, setProducts] = useState([])
     const {cart, setCart} = useContext(CartContext)
     const {user, setUser} = useContext(UserContext)

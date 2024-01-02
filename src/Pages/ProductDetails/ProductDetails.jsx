@@ -20,12 +20,10 @@ function ProductDetails () {
     }
 
     async function onAddingProduct () {
-        console.log("add Product function called")
         if(!user) return;
         const response = await axiosinstance.put(addProductToCart(), {userId: user.id, productId: id})
         setCart({...response.data})
         navigator(`/cart/${+user.id}`)
-        // setCart({...cart, products: [...cart.products, id]})
     }
     useEffect(() => {
         downloadSingleProduct(id)
