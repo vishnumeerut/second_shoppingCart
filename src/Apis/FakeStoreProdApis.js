@@ -31,3 +31,6 @@ export function getCartByUser (userId) {
 export function addProductToCart() {
     return `carts`
 }
+export function updateProductToCart() {
+    return `carts/updateProduct`
+}

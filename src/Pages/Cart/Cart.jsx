@@ -1,11 +1,10 @@
-import { useParams, useRouteError } from "react-router-dom";
 import axiosinstance from "../../Config/AxiosInstance";
-import { getCartByUser, getSingleProductById } from "../../Apis/FakeStoreProdApis";
+import { getSingleProductById, updateProductToCart } from "../../Apis/FakeStoreProdApis";
 import { useContext, useEffect, useState } from "react";
 import CartContext from "../../context/CartContext";
-import useCart from "../../Hooks/useCart";
 import axios from "axios";
 import OrderDetailsProduct from "../../Components/OrderDetailsProduct/OrderDetailsProduct";
+import UserContext from "../../context/UserContext";
 
 function Cart () {
 
@@ -13,6 +12,7 @@ function Cart () {
     // const [cart, setCart] = useCart(userId)
     const [products, setProducts] = useState([])
     const {cart, setCart} = useContext(CartContext)
+    const {user, setUser} = useContext(UserContext)
 
 
 
@@ -29,6 +29,11 @@ function Cart () {
 
     }
 
+    async function onRemovingProduct (productId, quantity) {
+        if(!user) return;
+        const response = await axiosinstance.put(updateProductToCart(), {userId: user.id, productId, quantity})
+        setCart({...response.data})
+    }
     useEffect(() => {
 
         downloadCartProducts(cart)
@@ -53,7 +58,9 @@ function Cart () {
                         {products && products.map(product => <OrderDetailsProduct key={product.id} 
                                                                     name={product.title} image={product.image} 
                                                                     quantity={product.quantity}
-                                                                    price={product.price} />)}
+                                                                    price={product.price}
+                                                                    onRemove={() => onRemovingProduct(product.id, 0)}
+                                                                    />)}
 
                     </ul>
                 </section>

@@ -1,4 +1,4 @@
-function OrderDetailsProduct ({image, name, price, quantity}) {
+function OrderDetailsProduct ({image, name, price, quantity, onRemove}) {
     const availableQuantity = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
     return (
         <div class="">
@@ -78,7 +78,7 @@ function OrderDetailsProduct ({image, name, price, quantity}) {
                     <path d="M19 6v14c0 1-1 2-2 2H7c-1 0-2-1-2-2V6"></path>
                     <path d="M8 6V4c0-1 1-2 2-2h4c1 0 2 1 2 2v2"></path>
                 </svg>
-                <span class="text-xs font-medium text-red-500">Remove</span>
+                <span class="text-xs font-medium text-red-500" onClick={onRemove}>Remove</span>
                 </button>
             </div>
             </div>
