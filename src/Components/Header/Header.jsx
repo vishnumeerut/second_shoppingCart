@@ -59,7 +59,7 @@ function Header () {
                     </li>
                         
                     }
-                    {user && <li>
+                    {user && cart && <li>
                     <Link to={`cart/${user.id}`}
                         // href="#"
                         className="inline-flex items-center text-lg  font-semibold hover:text-gray-700"

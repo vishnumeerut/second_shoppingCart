@@ -1,14 +1,33 @@
-import { useParams } from "react-router-dom";
+import { useParams, useRouteError } from "react-router-dom";
 import axiosinstance from "../../Config/AxiosInstance";
-import { getCartByUser } from "../../Apis/FakeStoreProdApis";
+import { getCartByUser, getSingleProductById } from "../../Apis/FakeStoreProdApis";
 import { useContext, useEffect } from "react";
 import CartContext from "../../context/CartContext";
 import useCart from "../../Hooks/useCart";
+import axios from "axios";
 
 function Cart () {
 
-    const {userId} = useParams()
-    const [cart, setCart] = useCart(userId)
+    // const {userId} = useParams()
+    // const [cart, setCart] = useCart(userId)
+    const {cart, setCart} = useContext(CartContext)
+
+
+
+    async function downloadCartProducts(cart) {
+        if(!cart || !cart.products) return;
+        console.log(cart.products)
+        const productPromise = cart.products.map(product => axiosinstance.get(getSingleProductById(product.productId)))
+        console.log(productPromise)
+        const productPromiseResponse = await axios.all(productPromise)
+        console.log("product Promise response", productPromiseResponse)
+
+    }
+
+    useEffect(() => {
+
+        downloadCartProducts(cart)
+    }, [cart])
 
     return (
         <div class="mx-auto max-w-7xl px-2 lg:px-0">
