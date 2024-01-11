@@ -16,12 +16,10 @@ function ProductList () {
         downloadAllProducts(query.get("category"))
     }, [])
     return (
-        // <h1>procutList</h1>
         <>
             <h1 className="text-6xl text-center mt-10">All Products</h1>
             <div className="flex gap-5 justify-center mt-10 mb-10 flex-wrap">
 
-                {/* <ProductBox name={"nike jordan Air"} price={"45$"}/> */}
                 {allProducts && allProducts.map((product) => <ProductBox key={product.id} productId={product.id} name={product.title} price={product.price} productImage={product.image}/>)}
                 
             </div>

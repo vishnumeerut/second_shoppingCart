@@ -9,6 +9,7 @@ import axiosinstance from './Config/AxiosInstance'
 import { useCookies } from 'react-cookie'
 import { jwtDecode } from 'jwt-decode'
 import { fetchUserCart } from './helper/fetchUserCartHelper'
+import Footer from './Components/Footer/Footer'
 
 function App() {
 
@@ -45,6 +46,7 @@ function App() {
       <CartContext.Provider value={{cart, setCart}}>
         <Header />
         <MainRoutes />
+        <Footer />
         </CartContext.Provider>
       </UserContext.Provider>
 
