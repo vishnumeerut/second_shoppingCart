@@ -160,7 +160,7 @@ function Footer() {
     </div>
     <hr className="my-4" />
     <div className="mt-4 md:mt-0 mb-8 text-center">
-      <p className="text-xl font-medium text-gray-500">
+      <p className=" text-lg p-4  md:text-2xl font-medium text-gray-500">
         © All rights reserved by {import.meta.env.VITE_COPY_RIGHT}
       </p>
     </div>
