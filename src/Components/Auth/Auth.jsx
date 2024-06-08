@@ -6,15 +6,17 @@ function Auth ({onSubmit, flag}) {
     const [formDetails, setFormDetails] = useState({
         username: "", email: "", password: ""
     })
-    console.log("formdetails is", formDetails)
 
+    console.log("formdetails is", formDetails)
+    
     function handleInputChange (e) {
         const {name,  value} = e.target;
         setFormDetails({
             ...formDetails,
             [name] : value,
-        })
-
+            })
+        console.log("formdetails is", formDetails)
+            
     }
 
     
@@ -35,7 +37,7 @@ function Auth ({onSubmit, flag}) {
                         <div>
                             <label for="name" class="text-base font-medium text-gray-900">
                             {" "}
-                            Full Name{" "}
+                            User Name{" "}
                             </label>
                             <div class="mt-2">
                             <input
@@ -44,7 +46,7 @@ function Auth ({onSubmit, flag}) {
                                 value={formDetails.username}
                                 class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                                 type="text"
-                                placeholder="Full Name"
+                                placeholder="Enter Your Full Name"
                                 id="name"
                             />
                             </div>
@@ -61,7 +63,7 @@ function Auth ({onSubmit, flag}) {
                                 value={formDetails.email}
                                 class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                                 type="email"
-                                placeholder="Email"
+                                placeholder="Enter Your Email"
                                 id="email"
                             />
                             </div>
@@ -83,7 +85,7 @@ function Auth ({onSubmit, flag}) {
                                 value={formDetails.password}
                                 class="flex h-10 w-full rounded-md border border-gray-300 bg-transparent px-3 py-2 text-sm placeholder:text-gray-400 focus:outline-none focus:ring-1 focus:ring-gray-400 focus:ring-offset-1 disabled:cursor-not-allowed disabled:opacity-50"
                                 type="password"
-                                placeholder="Password"
+                                placeholder="Enter Your Password"
                                 id="password"
                             />
                             </div>

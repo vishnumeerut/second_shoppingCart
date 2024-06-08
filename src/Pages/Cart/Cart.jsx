@@ -5,12 +5,15 @@ import CartContext from "../../context/CartContext";
 import axios from "axios";
 import OrderDetailsProduct from "../../Components/OrderDetailsProduct/OrderDetailsProduct";
 import UserContext from "../../context/UserContext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 function Cart () {
 
     const [products, setProducts] = useState([])
     const {cart, setCart} = useContext(CartContext)
     const {user, setUser} = useContext(UserContext)
+    console.log("product form cart", products)
 
 
 
@@ -57,7 +60,10 @@ function Cart () {
                                                                     name={product.title} image={product.image} 
                                                                     quantity={product.quantity}
                                                                     price={product.price}
-                                                                    onRemove={() => onRemovingProduct(product.id, 0)}
+                                                                    onRemove={() => {
+                                                                        onRemovingProduct(product.id, 0)
+                                                                        toast.success("Product Removed Successfully")
+                                                                    }}
                                                                     />)}
 
                     </ul>
@@ -75,7 +81,7 @@ function Cart () {
                     <div>
                     <dl class=" space-y-1 px-2 py-4">
                         <div class="flex items-center justify-between">
-                        <dt class="text-sm text-gray-800">Price (3 item)</dt>
+                        <dt class="text-sm text-gray-800">Price</dt>
                         <dd class="text-sm font-medium text-gray-900">₹ 52,398</dd>
                         </div>
                         <div class="flex items-center justify-between pt-4">

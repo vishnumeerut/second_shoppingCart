@@ -7,6 +7,7 @@ import toast from "react-hot-toast";
 function Signup () {
     const navigator = useNavigate()
     async function onAuthFormSubmit(authArguments){
+        console.log("authArguments", authArguments)
         try{
             await axiosinstance.post(signup(), {
                 username: authArguments.username,
