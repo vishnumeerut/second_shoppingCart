@@ -10,6 +10,7 @@ import { useCookies } from 'react-cookie'
 import { jwtDecode } from 'jwt-decode'
 import { fetchUserCart } from './helper/fetchUserCartHelper'
 import Footer from './Components/Footer/Footer'
+import  { Toaster } from 'react-hot-toast';
 
 function App() {
 
@@ -47,6 +48,7 @@ function App() {
         <Header />
         <MainRoutes />
         <Footer />
+        <Toaster />
         </CartContext.Provider>
       </UserContext.Provider>
 

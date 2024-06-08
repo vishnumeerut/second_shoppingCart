@@ -17,7 +17,7 @@ function Home () {
     async function downloadAllProducts() {
         try{
             const response = await axiosinstance.get(getAllProducts())
-            console.log("response of all products", response.data)
+            // console.log("response of all products", response.data)
             setAllProducts(response.data)
         }
         catch(error) {
@@ -31,13 +31,12 @@ function Home () {
     return (
         <>
             <div className="flex justify-center mt-10">
-                <h1 className="text-6xl tracking-widest text-gray-700">Welcome to Shop Cart</h1>
+                <h1 className=" text-2xl md:text-6xl tracking-widest text-gray-700">Welcome to Shop Cart</h1>
             </div>
-            <div className="flex justify-center gap-10 mt-16">
+            <div className="flex justify-center gap-10 mt-16 flex-wrap">
 
                 <CategoryItem itemName="All Products" />
-                {categories && categories.map((category) => <CategoryItem itemName={category} key={category} filter={category} /> )}
-
+                    {categories && categories.map((category) => <CategoryItem itemName={category} key={category} filter={category} /> )}
 
                 
             </div>
@@ -46,7 +45,6 @@ function Home () {
                 {allProducts && allProducts.map((product) => <ProductBox key={product.id} productId={product.id} name={product.title} price={product.price} productImage={product.image}/>)}
                 
             </div>
-            {/* <h1>Home page</h1> */}
         </>
     )
 }
