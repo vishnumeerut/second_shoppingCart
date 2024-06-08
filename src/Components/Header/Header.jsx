@@ -132,7 +132,9 @@ function Header() {
               </div>
               <div className="h-[1px] bg-gray-300"></div>
               <div className="md:flex p-2 font-medium flex flex-col items-center gap-8">
-                <p className="text-xl md:block">UserName</p>
+              <p className="text-xl ">
+                {(user?.username) ? user?.username : "UserName"}
+              </p>
                 <div className="relative">
                   <i className="fa-solid fa-cart-shopping text-2xl"></i>
                   <span className="absolute top-[-8px] right-[-5px] bg-red-600 text-white rounded-full text-xs w-4 h-4 flex items-center justify-center">
@@ -141,6 +143,9 @@ function Header() {
                 </div>
                 <Link
                   to={`cart/${user?.id}`}
+                  onClick={() => {
+                    setShowNav(!showNav)
+                  }}
                   className="text-xl cursor-pointer"
                 >
                   Cart
@@ -150,6 +155,7 @@ function Header() {
                     type="button"
                     onClick={() => {
                       logOut();
+                      setShowNav(!showNav)
                     }}
                     className="rounded-md bg-black px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-black/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-green-600"
                   >
@@ -157,7 +163,12 @@ function Header() {
                   </Link>
                 ) : (
                   <Link
+                    
                     to={"/signin"}
+                    onClick={() => {
+                        setShowNav(!showNav)
+                    }}
+
                     type="button"
                     className="rounded-md bg-green-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-green-600/80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-black"
                   >
