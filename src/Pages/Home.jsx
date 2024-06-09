@@ -7,6 +7,7 @@ import axiosinstance from "../Config/AxiosInstance";
 import { getAllProducts } from "../Apis/FakeStoreProdApis";
 import ProductBox from "../Components/ProductBox/ProductBox";
 import SearchContext from "../context/SearchContext";
+import Shimmer from "../Components/ShimmerUi/Shimmer";
 
 function Home () {
 
@@ -33,6 +34,23 @@ function Home () {
     useEffect(() => {
         downloadAllProducts()
     }, [])
+
+    if(allProducts.length === 0) {
+        return (
+            
+            <> 
+                <h1 className="text-2xl text-center mt-12">Please wait. Data is loading...</h1>
+                <div className="flex gap-5 justify-center mt-10 mb-10 flex-wrap">
+
+                <Shimmer productPrice={"20"} productName={"Men's Clothing"}/>
+                <Shimmer productPrice={"30"} productName={"Men's Clothing"}/>
+                <Shimmer productPrice={"25"} productName={"Men's Clothing"}/>
+                <Shimmer productPrice={"39"} productName={"Men's Clothing"}/>
+
+                </div>
+            </>
+        )
+    }
     return (
         <>
             <div className="flex justify-center mt-10">
