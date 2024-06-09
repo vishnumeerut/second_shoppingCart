@@ -36,7 +36,7 @@ function Home () {
     return (
         <>
             <div className="flex justify-center mt-10">
-                <h1 className=" text-2xl md:text-6xl tracking-widest text-gray-700">Welcome to Shop Cart</h1>
+                <h1 className=" text-2xl md:text-6xl tracking-widest text-gray-700">Welcome to Shop Karo</h1>
             </div>
             <div className="flex justify-center gap-10 mt-16 flex-wrap">
 
