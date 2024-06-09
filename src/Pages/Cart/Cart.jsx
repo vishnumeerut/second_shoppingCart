@@ -6,7 +6,7 @@ import axios from "axios";
 import OrderDetailsProduct from "../../Components/OrderDetailsProduct/OrderDetailsProduct";
 import UserContext from "../../context/UserContext";
 import toast from "react-hot-toast";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Cart () {
 
@@ -14,6 +14,15 @@ function Cart () {
     const {cart, setCart} = useContext(CartContext)
     const {user, setUser} = useContext(UserContext)
     console.log("product form cart", products)
+
+    const productPrice = products?.[products.length-1]?.price;
+    console.log("productPrice", productPrice)
+    const totalPriceArray = products?.map((item) =>  item.price)
+    const totalPrice = totalPriceArray?.reduce((acc, nextElement) => acc+nextElement, 0)
+    console.log("total Price is", totalPrice)
+    const discoutPrice = Math.floor((totalPrice/100)*10);
+    console.log("discoutPrice", discoutPrice)
+
 
 
 
@@ -82,27 +91,30 @@ function Cart () {
                     <dl class=" space-y-1 px-2 py-4">
                         <div class="flex items-center justify-between">
                         <dt class="text-sm text-gray-800">Price</dt>
-                        <dd class="text-sm font-medium text-gray-900">₹ 52,398</dd>
+                        <dd class="text-sm font-medium text-gray-900">$ {productPrice}</dd>
                         </div>
                         <div class="flex items-center justify-between pt-4">
                         <dt class="flex items-center text-sm text-gray-800">
                             <span>Discount</span>
                         </dt>
-                        <dd class="text-sm font-medium text-green-700">- ₹ 3,431</dd>
+                        <dd class="text-sm font-medium text-green-700">- $ {discoutPrice}</dd>
                         </div>
                         <div class="flex items-center justify-between py-4">
                         <dt class="flex text-sm text-gray-800">
                             <span>Delivery Charges</span>
                         </dt>
-                        <dd class="text-sm font-medium text-green-700">Free</dd>
+                        <dd class="text-sm font-medium text-green-700">Free You save (10$) here</dd>
                         </div>
                         <div class="flex items-center justify-between border-y border-dashed py-4 ">
                         <dt class="text-base font-medium text-gray-900">Total Amount</dt>
-                        <dd class="text-base font-medium text-gray-900">₹ 48,967</dd>
+                        <dd class="text-base font-medium text-gray-900">$ {totalPrice - discoutPrice}</dd>
                         </div>
                     </dl>
                     <div class="px-2 pb-4 font-medium text-green-700">
-                        You will save ₹ 3,431 on this order
+                        You will save total $ {discoutPrice + 10} on this order
+                    </div>
+                    <div>
+                        <Link to={"/checkout"} className="bg-red-400 hover:bg-red-500 text-white py-3 px-4 font-medium text-lg rounded-md">CheckOut</Link>
                     </div>
                     </div>
                 </section>
