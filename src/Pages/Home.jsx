@@ -6,6 +6,7 @@ import useCart from "../Hooks/useCart";
 import axiosinstance from "../Config/AxiosInstance";
 import { getAllProducts } from "../Apis/FakeStoreProdApis";
 import ProductBox from "../Components/ProductBox/ProductBox";
+import SearchContext from "../context/SearchContext";
 
 function Home () {
 
@@ -13,11 +14,15 @@ function Home () {
     const [categories] = useCategory()
     const {user} = useContext(UserContext)
     const [cart] = useCart(user ? user.id : undefined)
+    const {inputText,} = useContext(SearchContext)
+    let data = inputText.toLowerCase();
+    const filteredArray = allProducts.filter((item) => {
+        return item.title.toLowerCase().includes(data)
+    })
 
     async function downloadAllProducts() {
         try{
             const response = await axiosinstance.get(getAllProducts())
-            // console.log("response of all products", response.data)
             setAllProducts(response.data)
         }
         catch(error) {
@@ -42,7 +47,7 @@ function Home () {
             </div>
             <div className="flex gap-5 justify-center mt-40 mb-10 flex-wrap">
 
-                {allProducts && allProducts.map((product) => <ProductBox key={product.id} productId={product.id} name={product.title} price={product.price} productImage={product.image}/>)}
+                {filteredArray && filteredArray.map((product) => <ProductBox key={product.id} productId={product.id} name={product.title} price={product.price} productImage={product.image}/>)}
                 
             </div>
         </>

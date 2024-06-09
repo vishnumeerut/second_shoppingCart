@@ -7,11 +7,13 @@ import UserContext from "../../context/UserContext";
 import CartContext from "../../context/CartContext";
 import axiosinstance from "../../Config/AxiosInstance";
 import Logo from "../../assets/logo.png";
+import SearchContext from "../../context/SearchContext";
 
 function Header() {
   const [token, setToken, removeToken] = useCookies(["jwt-token"]);
   const { user, setUser } = useContext(UserContext);
   const { cart, setCart } = useContext(CartContext);
+  const {inputText, setInputText} = useContext(SearchContext);
   const [showNav, setShowNav] = useState(true);
 
   function logOut() {
@@ -49,6 +51,7 @@ function Header() {
               </div>
               <input
                 type="text"
+                onChange={(e) => setInputText(e.target.value)}
                 placeholder="Search Your item here..."
                 className="p-2 border border-gray-300 w-full text-center rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
               />

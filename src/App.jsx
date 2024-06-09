@@ -11,12 +11,14 @@ import { jwtDecode } from 'jwt-decode'
 import { fetchUserCart } from './helper/fetchUserCartHelper'
 import Footer from './Components/Footer/Footer'
 import  { Toaster } from 'react-hot-toast';
+import SearchContext from './context/SearchContext'
 
 function App() {
 
   const [user, setUser] = useState(null)
   const [cart, setCart] = useState({products:[]})
   const [token, setToken] = useCookies(["jwt-token"])
+  const [inputText, setInputText] = useState("")
 
   async function accesstoken() {
     axiosinstance.get("accesstoken", {withCredentials:true})
@@ -45,10 +47,12 @@ function App() {
     <>
       <UserContext.Provider value={{user, setUser}}>
       <CartContext.Provider value={{cart, setCart}}>
-        <Header />
-        <MainRoutes />
-        <Footer />
-        <Toaster />
+        <SearchContext.Provider value={{inputText, setInputText}}>
+          <Header />
+          <MainRoutes />
+          <Footer />
+          <Toaster />
+        </SearchContext.Provider>
         </CartContext.Provider>
       </UserContext.Provider>
 
