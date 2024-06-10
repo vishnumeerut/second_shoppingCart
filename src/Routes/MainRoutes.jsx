@@ -1,26 +1,86 @@
 import { Route, Routes } from "react-router-dom";
-import Home from "../Pages/Home";
-import Error from "../Pages/Error";
-import ProductList from "../Pages/ProductList/ProductList";
-import ProductDetails from "../Pages/ProductDetails/ProductDetails";
-import Login from "../Pages/Authentication/Login";
-import Signup from "../Pages/Authentication/Signup";
-import Cart from "../Pages/Cart/Cart";
-import Checkout from "../Pages/Checkout/Checkout";
+import { Suspense, lazy } from "react";
+import Shimmer from "../Components/ShimmerUi/Shimmer";
 
-function MainRoutes () {
-    return (
-        <Routes>
-            <Route  path="/" element={<Home />}/>
-            <Route  path="/products" element={<ProductList />}/>
-            <Route  path="/products/:id" element={<ProductDetails />}/>
-            <Route  path="/signin" element={<Login />}/>
-            <Route  path="/signup" element={<Signup />}/>
-            <Route  path="/cart/:userId" element={<Cart />}/>
-            <Route  path="/checkout" element={<Checkout />}/>
-            <Route  path="*" element={<Error />}/>
-        </Routes>
-    )
+const HomeLazy = lazy(() => import("../Pages/Home"));
+const ProductListLazy = lazy(() => import("../Pages/ProductList/ProductList"));
+const ProductDetailsLazy = lazy(() =>
+  import("../Pages/ProductDetails/ProductDetails")
+);
+const LoginLazy = lazy(() => import("../Pages/Authentication/Login"));
+const SignupLazy = lazy(() => import("../Pages/Authentication/Signup"));
+const CartLazy = lazy(() => import("../Pages/Cart/Cart"));
+const CheckoutLazy = lazy(() => import("../Pages/Checkout/Checkout"));
+const ErrorLazy = lazy(() => import("../Pages/Checkout/Checkout"));
+function MainRoutes() {
+  return (
+    <Routes>
+      <Route
+        path="/"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <HomeLazy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/products"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <ProductListLazy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/products/:id"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <ProductDetailsLazy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/signin"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <LoginLazy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <SignupLazy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/cart/:userId"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <CartLazy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/checkout"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <CheckoutLazy />
+          </Suspense>
+        }
+      />
+      <Route
+        path="*"
+        element={
+          <Suspense fallback={<Shimmer />}>
+            <ErrorLazy />
+          </Suspense>
+        }
+      />
+    </Routes>
+  );
 }
 
 export default MainRoutes;
