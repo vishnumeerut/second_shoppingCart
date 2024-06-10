@@ -107,7 +107,7 @@ function Cart () {
                         </div>
                         <div class="flex items-center justify-between border-y border-dashed py-4 ">
                         <dt class="text-base font-medium text-gray-900">Total Amount</dt>
-                        <dd class="text-base font-medium text-gray-900">$ {totalPrice - discoutPrice}</dd>
+                        <dd class="text-base font-medium text-gray-900">$ {(totalPrice - discoutPrice).toFixed(2)}</dd>
                         </div>
                     </dl>
                     <div class="px-2 pb-4 font-medium text-green-700">

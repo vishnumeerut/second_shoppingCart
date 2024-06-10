@@ -129,9 +129,11 @@ function Header() {
                 </div>
                 <input
                   type="text"
+                  onChange={(e) => setInputText(e.target.value)}
                   placeholder="Search Your item here..."
-                  className="p-2 border border-gray-300 w-full text-center rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
+                  className="p-2 border border-gray-300 w-3/4 text-center rounded-lg focus:outline-none focus:ring-2 focus:ring-gray-400 focus:border-transparent"
                 />
+                <button className="bg-green-500 text-white ms-3 p-2 rounded-lg hover:bg-green-400" onClick={() => setShowNav(!showNav)}>Search</button>
               </div>
               <div className="h-[1px] bg-gray-300"></div>
               <div className="md:flex p-2 font-medium flex flex-col items-center gap-8">

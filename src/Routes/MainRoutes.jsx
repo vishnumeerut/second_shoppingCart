@@ -11,7 +11,7 @@ const LoginLazy = lazy(() => import("../Pages/Authentication/Login"));
 const SignupLazy = lazy(() => import("../Pages/Authentication/Signup"));
 const CartLazy = lazy(() => import("../Pages/Cart/Cart"));
 const CheckoutLazy = lazy(() => import("../Pages/Checkout/Checkout"));
-const ErrorLazy = lazy(() => import("../Pages/Checkout/Checkout"));
+const ErrorLazy = lazy(() => import("../Pages/Error"));
 function MainRoutes() {
   return (
     <Routes>
