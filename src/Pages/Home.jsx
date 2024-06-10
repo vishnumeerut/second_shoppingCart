@@ -42,10 +42,10 @@ function Home () {
                 <h1 className="text-2xl text-center mt-12">Please wait. Data is loading...</h1>
                 <div className="flex gap-5 justify-center mt-10 mb-10 flex-wrap">
 
-                <Shimmer productPrice={"20"} productName={"Men's Clothing"}/>
+                <Shimmer productPrice={"20"} productName={"Women's Clothing"}/>
                 <Shimmer productPrice={"30"} productName={"Men's Clothing"}/>
-                <Shimmer productPrice={"25"} productName={"Men's Clothing"}/>
-                <Shimmer productPrice={"39"} productName={"Men's Clothing"}/>
+                <Shimmer productPrice={"25"} productName={"Electronic"}/>
+                <Shimmer productPrice={"39"} productName={"Jwellery"}/>
 
                 </div>
             </>

@@ -1,4 +1,3 @@
-import { jwtDecode } from "jwt-decode";
 import { useContext, useState } from "react";
 import { useEffect } from "react";
 import { useCookies } from "react-cookie";
@@ -26,7 +25,6 @@ function Header() {
   useEffect(() => {}, [token]);
   return (
     <>
-      {/* navbar start here */}
 
       <nav className="bg-[#373A40] z-10 p-2 flex justify-between sticky top-0">
         {showNav ? (
